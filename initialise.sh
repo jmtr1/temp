@@ -5,35 +5,37 @@ set -e
 # Install Python packages
 uv pip install --system torch dask transformers ipywidgets boto3 openai dotenv optuna lightgbm wandb openpyxl nbconvert botocore==1.40.18
 
-# Install Node.js and npm (needed to build the theme)
-sudo apt-get update
-sudo apt-get install -y nodejs npm
-
-# Install VSCE (VS Code Extension Manager) globally
-sudo npm install -g vsce
-
-# Install VS Code extension from Open VSX
+# Install VS Code icon theme extension
 code-server --install-extension PKief.material-icon-theme
 
-# Build and install JupyterLab Light Theme extension
-git clone https://github.com/corralm/vscode-jupyterlab-theme.git
-cd vscode-jupyterlab-theme
-npm install
-vsce package
-# Install the generated .vsix
-VSIX_FILE=$(ls *.vsix | head -n 1)
-code-server --install-extension "$VSIX_FILE"
-cd ..
-# Clean up the theme source directory
-rm -rf vscode-jupyterlab-theme
+# Download the theme .vsix file
+THEME_URL="https://github.com/jmtr1/temp/raw/refs/heads/main/jupyterlab-light-theme.vsix"
+THEME_VSIX="jupyterlab-light-theme.vsix"
 
-# Ensure VS Code settings directory exists
-mkdir -p ~/.config/Code/User
+curl -fSL "$THEME_URL" -o "$THEME_VSIX"
 
-# Write VS Code settings
-cat > ~/.config/Code/User/settings.json <<EOF
-{
-  "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "JupyterLab Light Theme"
-}
-EOF
+# Install the theme extension
+code-server --install-extension "$THEME_VSIX"
+
+# Remove the downloaded .vsix file after installing
+rm -f "$THEME_VSIX"
+
+# Path to the VSCode settings.json file (for code-server)
+SETTINGS_FILE="${HOME}/.local/share/code-server/User/settings.json"
+
+# If settings.json doesn’t exist, initialize it
+if [ ! -f "$SETTINGS_FILE" ]; then
+    echo "No existing settings.json found. Creating a new one."
+    mkdir -p "$(dirname "$SETTINGS_FILE")"
+    echo "{}" > "$SETTINGS_FILE"
+fi
+
+# Use jq to update or add settings
+jq '. + {
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "JupyterLab Light Theme",
+    "editor.rulers": [80, 100, 120],
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "flake8.args": ["--max-line-length=100"]
+}' "$SETTINGS_FILE" > "${SETTINGS_FILE}.tmp" && mv "${SETTINGS_FILE}.tmp" "$SETTINGS_FILE"
