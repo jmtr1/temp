@@ -6,8 +6,8 @@ set -e
 uv pip install --system torch dask transformers ipywidgets boto3 openai dotenv optuna lightgbm wandb openpyxl nbconvert botocore==1.40.18
 
 # Install VS Code extensions
-code --install-extension PKief.material-icon-theme
-code --install-extension miguelcorraljr.jupyterlab-light-theme
+code-server --install-extension PKief.material-icon-theme
+code-server --install-extension miguelcorraljr.jupyterlab-light-theme
 
 # Ensure VS Code settings directory exists
 mkdir -p ~/.config/Code/User
@@ -19,3 +19,4 @@ cat > ~/.config/Code/User/settings.json <<EOF
   "workbench.colorTheme": "JupyterLab Light Theme"
 }
 EOF
+
