@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Install required system packages
 sudo apt-get update
@@ -16,7 +16,7 @@ sudo ln -sf "$(pwd)/squashfs-root/AppRun" /usr/local/bin/inkscape
 uv pip install --system torch dask transformers ipywidgets boto3 openai dotenv optuna lightgbm wandb openpyxl nbconvert botocore==1.40.18
 
 # Install VS Code extensions
-code-server --install-extension PKief.material-icon-theme
+code-server --install-extension pkief.material-icon-theme
 
 # Install JupyterLab light theme from VSIX
 THEME_VSIX="jupyterlab-light-theme.vsix"
@@ -44,3 +44,4 @@ jq '. + {
     "editor.fontFamily": "JetBrains Mono, monospace",
     "editor.fontLigatures": true
 }' "$SETTINGS_FILE" > "$SETTINGS_FILE.tmp" && mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
+
