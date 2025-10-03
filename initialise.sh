@@ -37,6 +37,8 @@ jq '. + {
     "editor.fontFamily": "JetBrains Mono",
     "editor.fontSize": 13,
     "workbench.startupEditor": "none",
+    "welcomePage.walkthroughs.openOnInstall": false,
+    "editor.gettingStartedPreferences.experimental.showOnStartup": "off",
     "files.exclude": {
         "**/__pycache__": true,
         "**/.env": true,
