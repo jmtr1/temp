@@ -1,4 +1,8 @@
 #!/bin/sh
+
+code-server --install-extension pomdtr.excalidraw-editor
+
+
 set -e
 
 # Download gzipped VSIX from Marketplace and save with a known name
