@@ -16,12 +16,11 @@ sudo ln -sf "$(pwd)/squashfs-root/AppRun" /usr/local/bin/inkscape
 rm -rf squashfs-root
 rm -f "$INKSCAPE_APPIMAGE"
 
+# Install Material Icon Theme extension
 materialIconVersion="5.27.0"
-wget --retry-on-http-error=429 "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/PKief/vsextensions/material-icon-theme/${materialIconVersion}/vspackage" -O material-icon-theme.vsix.gz
-gzip -d material-icon-theme.vsix.gz
-code-server --install-extension material-icon-theme.vsix --force
-rm material-icon-theme.vsix
+MATERIAL_VSIX="material-icon-theme.vsix"
 
+wget "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/PKief/vsextensions/material-icon-theme/${materialIconVersion}/vspackage" -O "$MATERIAL_VSIX"
 
-
-
+code-server --install-extension "$MATERIAL_VSIX" --force
+rm "$MATERIAL_VSIX"
