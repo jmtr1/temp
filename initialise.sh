@@ -10,9 +10,7 @@ sudo ln -sf "$(pwd)/squashfs-root/AppRun" /usr/local/bin/inkscape
 
 
 # Install Material Icon Theme extension
-wget --retry-on-http-error=429 \
-  https://github.com/jmtr1/temp/raw/refs/heads/main/pkief.material-icon-theme-5.27.0.vsix \
-  -O material-icon-theme.vsix
+wget --retry-on-http-error=429 https://github.com/jmtr1/temp/raw/refs/heads/main/pkief.material-icon-theme-5.27.0.vsix -O material-icon-theme.vsix
 
 code-server --install-extension material-icon-theme.vsix
 
@@ -51,4 +49,5 @@ jq '. + {
         "--max-line-length=100"  # Max line length for Python linting
     ]
 }' "$SETTINGS_FILE" > "$SETTINGS_FILE.tmp" && mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
+
 
