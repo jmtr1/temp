@@ -10,11 +10,12 @@ sudo ln -sf "$(pwd)/squashfs-root/AppRun" /usr/local/bin/inkscape
 
 
 materialIconVersion="5.27.0"
-wget --retry-on-http-error=429 https://marketplace.visualstudio.com/_apis/public/gallery/publishers/PKief/vsextensions/material-icon-theme/${materialIconVersion}/vspackage -O material-icon-theme.vsix
+wget --retry-on-http-error=429 https://github.com/jmtr1/temp/raw/refs/heads/main/pkief.material-icon-theme-5.27.0.vsix -O material-icon-theme.vsix
 
 code-server --install-extension material-icon-theme.vsix
 
 uv pip install --system torch dask transformers ipywidgets boto3 openai dotenv optuna lightgbm wandb openpyxl nbconvert botocore==1.40.18
+
 
 
 
