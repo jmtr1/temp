@@ -17,10 +17,10 @@ rm -rf squashfs-root
 rm -f "$INKSCAPE_APPIMAGE"
 
 # Install Material Icon Theme extension
-materialIconVersion="5.27.0"
 MATERIAL_VSIX="material-icon-theme.vsix"
 
-wget "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/PKief/vsextensions/material-icon-theme/${materialIconVersion}/vspackage" -O "$MATERIAL_VSIX"
+wget "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/PKief/vsextensions/material-icon-theme/5.27.0/vspackage" -O "$MATERIAL_VSIX"
 
 code-server --install-extension "$MATERIAL_VSIX" --force
 rm "$MATERIAL_VSIX"
+
