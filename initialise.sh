@@ -11,3 +11,18 @@ chmod +x "$INKSCAPE_APPIMAGE"
 ./"$INKSCAPE_APPIMAGE" --appimage-extract
 ./squashfs-root/AppRun --version
 sudo ln -sf "$(pwd)/squashfs-root/AppRun" /usr/local/bin/inkscape
+
+#!/bin/sh
+set -e
+
+# Follow redirects and write straight to a .vsix file
+curl -L \
+  "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/PKief/vsextensions/material-icon-theme/5.27.0/vspackage" \
+  -o material-icon-theme.vsix
+
+code-server --install-extension material-icon-theme.vsix --force
+rm material-icon-theme.vsix
+
+# Cleanup Inkscape files
+rm -rf squashfs-root
+rm -f "$INKSCAPE_APPIMAGE"
