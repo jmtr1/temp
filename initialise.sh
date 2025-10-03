@@ -10,12 +10,11 @@ sudo ln -sf "$(pwd)/squashfs-root/AppRun" /usr/local/bin/inkscape
 
 
 # Install Material Icon Theme extension
-materialIconVersion="5.27.0"
 wget --retry-on-http-error=429 \
-  "https://github.com/jmtr1/temp/raw/refs/heads/main/pkief.material-icon-theme-${materialIconVersion}.vsix" \
+  https://github.com/jmtr1/temp/raw/refs/heads/main/pkief.material-icon-theme-5.27.0.vsix \
   -O material-icon-theme.vsix
 
-code-server --install-extension ~/work/material-icon-theme.vsix
+code-server --install-extension material-icon-theme.vsix
 
 
 # Install Python packages
