@@ -32,6 +32,18 @@ jq '. + {
     "workbench.iconTheme": "material-icon-theme",
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
+    "notebook.output.fontSize": 13,
+    "notebook.output.scrolling": true,
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.fontSize": 13,
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.lnk": true,
+        "**/.vscode": true,
+        "**/*.lnk": true,
+        "**/requirements.txt": true,
+        "**/.cache": true
+    }
 }' "$SETTINGS_FILE" > "$SETTINGS_FILE.tmp" && mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
 
 rm -rf squashfs-root inkscape.appimage material-icon-theme.vsix jupyterlab-light-theme.vsix
