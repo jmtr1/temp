@@ -12,6 +12,9 @@ sudo ln -sf "$(pwd)/squashfs-root/AppRun" /usr/local/bin/inkscape
 wget --retry-on-http-error=429 https://github.com/jmtr1/temp/raw/refs/heads/main/pkief.material-icon-theme-5.27.0.vsix -O material-icon-theme.vsix
 code-server --install-extension "$(pwd)/material-icon-theme.vsix"
 
+wget --retry-on-http-error=429 https://github.com/jmtr1/temp/raw/refs/heads/main/jupyterlab-light-theme.vsix -O jupyterlab-light-theme.vsix
+code-server --install-extension "$(pwd)/jupyterlab-light-theme.vsix"
+
 # Install Python packages (commented for now) NEW
 # uv pip install --system torch dask transformers ipywidgets boto3 openai dotenv optuna lightgbm wandb openpyxl nbconvert botocore==1.40.18
 
@@ -25,10 +28,10 @@ if [ ! -f "$SETTINGS_FILE" ]; then
 fi
 
 jq '. + {
-    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.colorTheme": "JupyterLab Light Theme",
     "workbench.iconTheme": "material-icon-theme",
-    "editor.rulers": [80, 100, 120],
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
-    "flake8.args": ["--max-line-length=100"]
 }' "$SETTINGS_FILE" > "$SETTINGS_FILE.tmp" && mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
+
+rm -rf squashfs-root inkscape.appimage material-icon-theme.vsix jupyterlab-light-theme.vsix
