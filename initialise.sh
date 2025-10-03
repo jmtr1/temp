@@ -16,7 +16,7 @@ wget --retry-on-http-error=429 https://github.com/jmtr1/temp/raw/refs/heads/main
 code-server --install-extension "$(pwd)/jupyterlab-light-theme.vsix"
 
 # Install Python packages (commented for now) NEW
-#uv pip install --system torch dask transformers ipywidgets boto3 openai dotenv optuna lightgbm wandb openpyxl nbconvert botocore==1.40.18
+uv pip install --system torch dask transformers ipywidgets boto3 openai dotenv optuna lightgbm wandb openpyxl nbconvert botocore==1.40.18
 
 # Update VSCode settings
 SETTINGS_FILE="${HOME}/.local/share/code-server/User/settings.json"
@@ -39,8 +39,8 @@ jq '. + {
     "workbench.startupEditor": "none",
     "workbench.secondarySidebar.enabled": false,
     "chat.editor.showChat": false,
-    "chat.experimental.showOnStartup": false
-    "workbench.panel.chat.enabled": false
+    "chat.experimental.showOnStartup": false,
+    "workbench.panel.chat.enabled": false,
     "welcomePage.walkthroughs.openOnInstall": false,
     "editor.gettingStartedPreferences.experimental.showOnStartup": "off",
     "files.exclude": {
