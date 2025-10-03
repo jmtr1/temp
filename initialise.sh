@@ -12,8 +12,6 @@ chmod +x "$INKSCAPE_APPIMAGE"
 ./squashfs-root/AppRun --version
 sudo ln -sf "$(pwd)/squashfs-root/AppRun" /usr/local/bin/inkscape
 
-#!/bin/sh
-set -e
 
 # Follow redirects and write straight to a .vsix file
 curl -L \
@@ -26,3 +24,4 @@ rm material-icon-theme.vsix
 # Cleanup Inkscape files
 rm -rf squashfs-root
 rm -f "$INKSCAPE_APPIMAGE"
+
