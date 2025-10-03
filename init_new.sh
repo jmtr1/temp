@@ -1,6 +1,7 @@
 #!/bin/bash
-exec > >(tee -a ~/init.log) 2>&1
 set -euxo pipefail
+
+exec > >(tee -a ~/init.log) 2>&1
 
 echo "[Init] Starting VSIX download and install"
 
