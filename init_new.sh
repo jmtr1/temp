@@ -1,19 +1,26 @@
 #!/bin/sh
 
+# This init script install various useful VScode extensions
+# Expected parameters : None
+
+# CONFORT EXTENSIONS -----------------
+
+# Colorizes the indentation in front of text
+code-server --install-extension oderwat.indent-rainbow
+# Extensive markdown integration
+code-server --install-extension yzhang.markdown-all-in-one
+# Integrates Excalidraw (software for sketching diagrams)
 code-server --install-extension pomdtr.excalidraw-editor
 
+# COPILOT ----------------------------
 
-set -e
+# Install Copilot (Microsoft's AI-assisted code writing tool)
+copilotVersion="1.171.0"
+copilotChat="0.13.0"
 
-# Download gzipped VSIX from Marketplace and save with a known name
-wget -O material-icon-theme.vsix.gz \
-  "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/PKief/vsextensions/material-icon-theme/5.27.0/vspackage"
+wget --retry-on-http-error=429 "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/GitHub/vsextensions/copilot/${copilotVersion}/vspackage" -O copilot.vsix.gz
+wget --retry-on-http-error=429 https://marketplace.visualstudio.com/_apis/public/gallery/publishers/GitHub/vsextensions/copilot-chat/${copilotChat}/vspackage -O copilot-chat.vsix.gz
 
-# Decompress to VSIX
-gzip -d material-icon-theme.vsix.gz
-
-# Install into code-server
-code-server --install-extension material-icon-theme.vsix --force
-
-# Cleanup
-rm material-icon-theme.vsix
+code-server --install-extension copilot.vsix
+code-server --install-extension copilot-chat.vsix
+rm copilot.vsix copilot-chat.vsix
