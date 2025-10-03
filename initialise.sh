@@ -36,8 +36,10 @@ jq '. + {
     "notebook.output.scrolling": true,
     "editor.fontFamily": "JetBrains Mono",
     "editor.fontSize": 13,
+    "workbench.startupEditor": "none",
     "files.exclude": {
         "**/__pycache__": true,
+        "**/.env": true,
         "**/.lnk": true,
         "**/.vscode": true,
         "**/*.lnk": true,
