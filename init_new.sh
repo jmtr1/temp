@@ -1,11 +1,19 @@
 #!/bin/bash
-set -e
+set -euxo pipefail
 
-# Download the vsix
-wget -O /tmp/material-icon-theme.vsix https://github.com/jmtr1/temp/raw/refs/heads/main/pkief.material-icon-theme-5.27.0.vsix
+echo "[Init] Starting VSIX download and install"
 
-# Install it into the user’s extensions folder
-code-server --install-extension /tmp/material-icon-theme.vsix --extensions-dir /home/onyxia/.local/share/code-server/extensions
+# Download
+wget -O /tmp/material-icon-theme.vsix \
+  https://github.com/jmtr1/temp/raw/refs/heads/main/pkief.material-icon-theme-5.27.0.vsix
 
-# Clean up
-rm /tmp/material-icon-theme.vsix
+ls -lh /tmp/material-icon-theme.vsix
+
+# Install into code-server
+code-server --install-extension /tmp/material-icon-theme.vsix --force
+
+# Confirm installation
+echo "[Init] Installed extensions are now:"
+code-server --list-extensions || true
+
+echo "[Init] Done."
