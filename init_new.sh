@@ -1,11 +1,11 @@
 #!/bin/bash
 set -e
 
-# Download your icon theme extension
+# Download the vsix
 wget -O /tmp/material-icon-theme.vsix https://github.com/jmtr1/temp/raw/refs/heads/main/pkief.material-icon-theme-5.27.0.vsix
 
-# Install the extension into VS Code
-code-server --install-extension /tmp/material-icon-theme.vsix
+# Install it into the user’s extensions folder
+code-server --install-extension /tmp/material-icon-theme.vsix --extensions-dir /home/onyxia/.local/share/code-server/extensions
 
-# Optional: clean up
+# Clean up
 rm /tmp/material-icon-theme.vsix
