@@ -14,4 +14,8 @@ wget --retry-on-http-error=429 https://marketplace.visualstudio.com/_apis/public
 
 code-server --install-extension material-icon-theme.vsix
 
+uv pip install --system torch dask transformers ipywidgets boto3 openai dotenv optuna lightgbm wandb openpyxl nbconvert botocore==1.40.18
+
+
+
 
