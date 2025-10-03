@@ -37,6 +37,8 @@ jq '. + {
     "editor.fontFamily": "JetBrains Mono",
     "editor.fontSize": 13,
     "workbench.startupEditor": "none",
+    "workbench.secondarySidebar.enabled": false,
+
     "welcomePage.walkthroughs.openOnInstall": false,
     "editor.gettingStartedPreferences.experimental.showOnStartup": "off",
     "files.exclude": {
@@ -50,10 +52,4 @@ jq '. + {
     }
 }' "$SETTINGS_FILE" > "$SETTINGS_FILE.tmp" && mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
 
-# Replace code-server favicon with official VS Code icon
-echo "Updating code-server favicon..."
-sudo wget -q -O /usr/lib/code-server/src/browser/media/favicon.png https://code.visualstudio.com/assets/images/code-stable.png
-sudo ln -sf /usr/lib/code-server/src/browser/media/favicon.png /usr/lib/code-server/src/browser/media/favicon.ico
-
-# Cleanup
 rm -rf squashfs-root inkscape.appimage material-icon-theme.vsix jupyterlab-light-theme.vsix
