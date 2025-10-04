@@ -43,6 +43,7 @@ jq '. + {
     "workbench.panel.chat.enabled": false,
     "welcomePage.walkthroughs.openOnInstall": false,
     "editor.gettingStartedPreferences.experimental.showOnStartup": "off",
+    "terminal.integrated.cwd": "${HOME}/ai-patents-and-innovation",
     "files.exclude": {
         "**/__pycache__": true,
         "**/.env": true,
