@@ -55,4 +55,4 @@ jq '. + {
     }
 }' "$SETTINGS_FILE" > "$SETTINGS_FILE.tmp" && mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
 
-rm -rf squashfs-root inkscape.appimage material-icon-theme.vsix jupyterlab-light-theme.vsix
+rm -rf inkscape.appimage material-icon-theme.vsix jupyterlab-light-theme.vsix
