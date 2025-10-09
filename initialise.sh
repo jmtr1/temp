@@ -8,6 +8,20 @@ chmod +x "$INKSCAPE_APPIMAGE"
 ./squashfs-root/AppRun --version
 #sudo ln -sf "$(pwd)/squashfs-root/AppRun" /usr/local/bin/inkscape
 
+# Install system dependencies and fonts
+sudo rm -f /etc/apt/sources.list.d/*ubuntugis*
+sudo apt clean
+sudo apt update -y
+sudo apt install -y ghostscript libreoffice xvfb fontconfig fonts-liberation2
+
+# Copy Arial Narrow fonts if available
+mkdir -p "$HOME/.local/share/fonts"
+find "/home/onyxia/work/ai-patents-and-innovation/fonts" -maxdepth 1 -type f \
+    \( -iname 'arial-narrow*.ttf' -o -iname 'arialnarrow*.ttf' -o -iname 'arial narrow*.ttf' \
+    -o -iname 'ArialNarrow*.ttf' -o -iname 'Arial Narrow*.ttf' \) \
+    -print0 | xargs -0 -r -I{} cp -f "{}" "$HOME/.local/share/fonts/"
+fc-cache -f -v
+
 # Install Material Icon Theme extension
 wget --retry-on-http-error=429 https://github.com/jmtr1/temp/raw/refs/heads/main/pkief.material-icon-theme-5.27.0.vsix -O material-icon-theme.vsix
 code-server --install-extension "$(pwd)/material-icon-theme.vsix"
